@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.debug {
+  border: 1px solid red;
+}
+
+:global(.ant-menu-item-selected) {
+  background-color: #b039cc !important; /* Change to your desired color */
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected.mymenu {
+  background-color: #b039cc; /* Change to your desired color */
+}
