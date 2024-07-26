@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import Stake from "./Pages/Stake";
-import Band from "./Pages/Band";
+import Bond from "./Pages/Bond";
 import Calculator from "./Pages/Calculator";
 import Vaults from "./Pages/Vaults";
 import Leverage from "./Pages/Leverage";
@@ -9,7 +9,7 @@ import FlashMint from "./Pages/FlashMint";
 import Docs from "./Pages/Docs";
 import Sider from "antd/es/layout/Sider";
 import { useEffect, useState } from "react";
-import { Avatar, Button, Flex, Layout, Menu } from "antd";
+import { Avatar, Button, Flex, Layout, Menu, Space } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import MenuItem from "antd/es/menu/MenuItem";
 import {
@@ -28,6 +28,7 @@ import {
   GithubFilled,
   TwitterOutlined,
   MediumCircleFilled,
+  CheckOutlined,
 } from "@ant-design/icons";
 function App() {
   const [collapsed, setCollapsed] = useState(false);
@@ -52,10 +53,12 @@ function App() {
   // }, [islight]);
 
   const footerMenu = [
-    { icon: <DiscordFilled style={iconStyles} /> },
-    { icon: <GithubFilled style={iconStyles} /> },
-    { icon: <TwitterOutlined style={iconStyles} /> },
-    { icon: <MediumCircleFilled style={iconStyles} /> },
+    { icon: <DiscordFilled style={{ color: "gray", fontSize: "20px" }} /> },
+    { icon: <GithubFilled style={{ color: "gray", fontSize: "20px" }} /> },
+    { icon: <TwitterOutlined style={{ color: "gray", fontSize: "20px" }} /> },
+    {
+      icon: <MediumCircleFilled style={{ color: "gray", fontSize: "20px" }} />,
+    },
   ];
 
   const menu = [
@@ -88,11 +91,11 @@ function App() {
     {
       label: (
         <span className="text-sm font-semibold " style={textStyles}>
-          Band
+          Bond
         </span>
       ),
       icon: (
-        <Link to="band">
+        <Link to="bond">
           <ShopFilled style={iconStyles} />
         </Link>
       ),
@@ -250,11 +253,11 @@ function App() {
                 </Flex>
               </Flex>
             </Header>
-            <Content>
+            <Content className="">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="stake" element={<Stake />} />
-                <Route path="band" element={<Band />} />
+                <Route path="bond" element={<Bond />} />
                 <Route path="calculator" element={<Calculator />} />
                 <Route path="vaults" element={<Vaults />} />
                 <Route path="leverage" element={<Leverage />} />
@@ -262,10 +265,26 @@ function App() {
                 <Route path="docs" element={<Docs />} />
               </Routes>
             </Content>
-            <Footer
-              className=" h-[58px] border-t"
-              style={bgColorStyle}
-            ></Footer>
+            <Footer className=" h-[58px] border-t" style={bgColorStyle}>
+              <Flex
+                className="w-full h-full px-5 text-white"
+                align="center"
+                justify="space-between"
+                style={textStyles}
+              >
+                <p>&copy;2022 Whale Loans| All rights reserved</p>
+                <Flex gap={20}>
+                  <Space direction="horizontal">
+                    <CheckOutlined />
+                    <p>KYC Verified</p>
+                  </Space>
+                  <Space direction="horizontal">
+                    <CheckOutlined />
+                    <p>MCN Ventures</p>
+                  </Space>
+                </Flex>
+              </Flex>
+            </Footer>
           </Layout>
         </Layout>
       </Router>
