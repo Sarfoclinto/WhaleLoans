@@ -12,14 +12,26 @@ import { Content } from "antd/es/layout/layout";
 import Sidebar from "./Components/Sidebar";
 import AppHeader from "./Components/AppHeader";
 import AppFooter from "./Components/AppFooter";
+import { useState } from "react";
+import { ExclamationCircleFilled } from "@ant-design/icons";
 function App() {
+  const [islight, setIsLight] = useState(true);
+  const textStyles = {
+    color: islight ? "black" : "white",
+  };
+
+  const [headerinfo, setHeaderInfo] = useState(
+    <p style={textStyles}>
+      <ExclamationCircleFilled /> <span>1HUMP</span> = <span>$8.43</span>
+    </p>
+  );
   return (
     <div id="app" className="app w-full h-dvh ">
       <Router>
         <Layout className=" h-full pr-2">
-          <Sidebar />
+          <Sidebar headerinfo={headerinfo} setHeaderInfo={setHeaderInfo} />
           <Layout>
-            <AppHeader />
+            <AppHeader headerinfo={headerinfo} />
             <Content className="">
               <Routes>
                 <Route path="/" element={<Dashboard />} />

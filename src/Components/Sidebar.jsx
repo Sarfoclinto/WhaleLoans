@@ -18,7 +18,8 @@ import {
   MediumCircleFilled,
 } from "@ant-design/icons";
 import MenuItem from "antd/es/menu/MenuItem";
-function Sidebar() {
+import { ExclamationCircleFilled } from "@ant-design/icons";
+function Sidebar({ setHeaderInfo }) {
   const [islight, setIsLight] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -49,6 +50,11 @@ function Sidebar() {
         </Link>
       ),
       key: "1",
+      headerinfo: (
+        <p style={textStyles}>
+          <ExclamationCircleFilled /> <span>1HUMP</span> = <span>$8.43</span>
+        </p>
+      ),
     },
     {
       label: (
@@ -62,6 +68,11 @@ function Sidebar() {
         </Link>
       ),
       key: "2",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Stake
+        </p>
+      ),
     },
     {
       label: (
@@ -75,6 +86,11 @@ function Sidebar() {
         </Link>
       ),
       key: "3",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Bond
+        </p>
+      ),
     },
     {
       label: (
@@ -88,6 +104,11 @@ function Sidebar() {
         </Link>
       ),
       key: "4",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Calculator
+        </p>
+      ),
     },
     {
       label: (
@@ -101,6 +122,11 @@ function Sidebar() {
         </Link>
       ),
       key: "5",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Vaults
+        </p>
+      ),
     },
     {
       label: (
@@ -114,6 +140,11 @@ function Sidebar() {
         </Link>
       ),
       key: "6",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Leverage
+        </p>
+      ),
     },
     {
       label: (
@@ -127,6 +158,11 @@ function Sidebar() {
         </Link>
       ),
       key: "7",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Flash Mint
+        </p>
+      ),
     },
     {
       label: (
@@ -140,6 +176,11 @@ function Sidebar() {
         </Link>
       ),
       key: "8",
+      headerinfo: (
+        <p style={textStyles} className="font-bold text-lg">
+          Label
+        </p>
+      ),
     },
   ];
 
@@ -151,6 +192,10 @@ function Sidebar() {
       icon: <MediumCircleFilled style={{ color: "gray", fontSize: "20px" }} />,
     },
   ];
+
+  const handleClick = (headerinfo) => {
+    setHeaderInfo(headerinfo);
+  };
   return (
     <Sider
       onBreakpoint={(broken) => {
@@ -181,11 +226,20 @@ function Sidebar() {
       </div>
       <Menu
         theme={islight ? "light" : "dark"}
-        items={menu}
         defaultSelectedKeys={["1"]}
         mode="inline"
         className=" h-5/6 py-3 mymenu"
-      />
+      >
+        {menu.map((item) => (
+          <Menu.Item
+            key={item.key}
+            icon={item.icon}
+            onClick={() => handleClick(item.headerinfo)}
+          >
+            {item.label}
+          </Menu.Item>
+        ))}
+      </Menu>
       <Footer
         className=" border-t h-fit"
         style={{

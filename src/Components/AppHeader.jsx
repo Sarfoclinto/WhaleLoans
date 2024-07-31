@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { Header } from "antd/es/layout/layout";
 import { Button, Flex } from "antd";
-function AppHeader() {
+function AppHeader({ headerinfo }) {
   const [islight, setIsLight] = useState(true);
 
   const textStyles = {
@@ -22,9 +22,7 @@ function AppHeader() {
       style={bgColorStyle}
     >
       <Flex className="w-full h-full " align="center" justify="space-between">
-        <p style={textStyles}>
-          <ExclamationCircleFilled /> <span>1HUMP</span> = <span>$8.43</span>
-        </p>
+        {headerinfo}
         <Flex align="center" gap="middle">
           <Button type="primary" className="bg-black">
             Connect Wallet
